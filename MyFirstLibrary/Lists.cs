@@ -25,7 +25,7 @@ namespace MyFirstLibrary
             if (!(array == null))
             {
                 Length = array.Length;
-                _array = new int[array.Length];
+                _array = new int[array.Length + 1];
 
                 for (int i = 0; i < array.Length; ++i)
                 {
@@ -142,20 +142,20 @@ namespace MyFirstLibrary
 
         public void RemoveNElementsFromStart(int nElements)
         {
-            //if (Length >= nElements)
-            //{
-            //    if (nElements >= 0)
-            //    {
-            //        Length -= nElements;
-            //        ShiftLeft(0, nElements);
-            //    }
-            //    else
-            //    {
-            //        Length = 0;
-            //    }
+            if (Length >= nElements)
+            {
+                if (nElements >= 0)
+                {
+                    Length -= nElements;
+                    ShiftLeft(0, nElements);
+                }
+                else
+                {
+                    Length = 0;
+                }
 
-            //    Resize();
-            //}
+                Resize();
+            }
 
             RemoveNElementsByIndex(0, nElements);
 

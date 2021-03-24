@@ -113,7 +113,7 @@ namespace MyFirstLibrary.Test
         [TestCase(3, new int[] { 0, 1, 2, 6, 8, 9 }, new int[] { 6, 8, 9 })]
         [TestCase(5, new int[] { 0, 1, 2, 6, 8, 9 }, new int[] { 9 })]
         [TestCase(9, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, new int[] { })]
-
+        [TestCase(1, new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4, 5 })]
         public void RemoveNElementsFromStart_WhenValidValues_RemoveNElementsFromStart(int nElements, int[] actualArray, int[] expectedArray)
         {
             Lists actual = new Lists(actualArray);
@@ -124,8 +124,11 @@ namespace MyFirstLibrary.Test
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(3, 3, new int[] { 0, 1, 2, 6, 8, 9 }, new int[] { 0, 1, 2 })]
-        [TestCase(1, 4, new int[] { 0, 1, 2, 6, 8, 9 }, new int[] { 0, 1, 2, 6, 8 })]
+        [TestCase(3, 3, new int[] { 0, 1, 2, 3, 4, 5 }, new int[] { 0, 1, 2 })]
+        [TestCase(4, 2, new int[] { 0, 1, 2, 3, 4, 5 }, new int[] { 0, 1 })]
+        [TestCase(5, 1, new int[] { 0, 1, 2, 3, 4, 5 }, new int[] { 0 })]
+        [TestCase(1, 9, new int[] { -1, -2, -3, -4, 5, 4, 3, 2, 1, 0 }, new int[] { -1, -2, -3, -4, 5, 4, 3, 2, 1 })]
+        [TestCase(6, 5, new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { })]
         public void RemoveNElementsByIndex_WhenValidValues_RemoveNElementsByIndex(int nElements, int index, int[] actualArray, int[] expectedArray)
         {
             Lists actual = new Lists(actualArray);
@@ -138,6 +141,9 @@ namespace MyFirstLibrary.Test
 
         [TestCase(new int[] { 0, 1, 2, 6, 8, 9 }, new int[] { 9, 8, 6, 2, 1, 0 })]
         [TestCase(new int[] { 0, 0 }, new int[] { 0, 0 })]
+        [TestCase(new int[] { 98, -28 }, new int[] { -28, 98 })]
+        [TestCase(new int[] { }, new int[] { })]
+        [TestCase(new int[] { 0 }, new int[] { 0 })]
         public void Reverse_WhenValidValues_ReverseTheElementsOfTheArray(int[] actualArray, int[] expectedArray)
         {
             Lists actual = new Lists(actualArray);
@@ -150,6 +156,9 @@ namespace MyFirstLibrary.Test
 
         [TestCase(new int[] { 1, 2, 4, 7, 9 }, 9 )]
         [TestCase(new int[] { 0, 0 }, 0 )]
+        [TestCase(new int[] { 9, -10, -78, 67, -100500}, 67)]
+        [TestCase(new int[] { 1 }, 1)]
+        [TestCase(new int[] { -10, -9, -8, -2}, -2)]
         public void FindMaxElement_WhenValidValues_FindTheBiggestElementOfTheArray(int[] actualArray, int expected)
         {
             Lists array = new Lists(actualArray);
@@ -161,6 +170,9 @@ namespace MyFirstLibrary.Test
 
         [TestCase(new int[] { 1, 2, 4, 7, 9 }, 1)]
         [TestCase(new int[] { 2, 8, 9, 0, 3, 0 }, 0)]
+        [TestCase(new int[] { -9, -4, -7, -2}, -9)]
+        [TestCase(new int[] { 99, 99, 99}, 99)]
+        [TestCase(new int[] { 1 }, 1)]
         public void FindMinElement_WhenValidValues_FindTheSmallestElementOfTheArray(int[] actualArray, int expected)
         {
             Lists array = new Lists(actualArray);
@@ -172,6 +184,9 @@ namespace MyFirstLibrary.Test
 
         [TestCase(new int[] { 1, 2, 4, 7, 9 }, 4)]
         [TestCase(new int[] { 2, 8, 9, 0, 3, 0 }, 2)]
+        [TestCase(new int[] { -9, -9 }, 0)]
+        [TestCase(new int[] { 0 }, 0)]
+        [TestCase(new int[] { -9, -8, -7, -6, -5, -4, -3, -2, -1}, 8)]
         public void MaxIndex_WhenValidValues_FindTheBiggestIndexOfTheArray(int[] actualArray, int expected)
         {
             Lists array = new Lists(actualArray);
@@ -183,6 +198,9 @@ namespace MyFirstLibrary.Test
 
         [TestCase(new int[] { 1, 2, 4, 7, 9 }, 0)]
         [TestCase(new int[] { 2, 8, 9, 0, 3, 0 }, 3)]
+        [TestCase(new int[] { -2, -2 }, 0)]
+        [TestCase(new int[] { 0, 0 }, 0 )]
+        [TestCase(new int[] { -9, -8, -7, -6, -5, -4, -3, -2, -1}, 0)]
         public void MinIndex_WhenValidValues_FindTheSmallestIndexOfTheArray(int[] actualArray, int expected)
         {
             Lists array = new Lists(actualArray);
@@ -194,6 +212,9 @@ namespace MyFirstLibrary.Test
 
         [TestCase(new int[] { 1, 3, 7, 5, 89, 9, 78 }, new int[] { 1, 3, 5, 7, 9, 78, 89 })]
         [TestCase(new int[] { 2, 8, 9, 0, 3, 0 }, new int[] { 0, 0, 2, 3, 8, 9 })]
+        [TestCase(new int[] { 0, 0 }, new int[] { 0, 0 })]
+        [TestCase(new int[] { -1, -2, -3, -4, -5, -6, -7, -8, -9 }, new int[] { -9, -8, -7, -6, -5, -4, -3, -2, -1})]
+        [TestCase(new int[] { -1, 2, 3, -10, 9, -78 }, new int[] { -78, -10, -1, 2, 3, 9 })]
         public void SortByAscending_WhenValidValues_SortAllElementsOfArrayFromSmallestToBiggest(int[] actualArray, int[] expectedArray)
         {
             Lists actual = new Lists(actualArray);
@@ -206,6 +227,9 @@ namespace MyFirstLibrary.Test
 
         [TestCase(new int[] { 1, 3, 7, 5, 89, 9, 78 }, new int[] { 89, 78, 9, 7, 5, 3, 1 })]
         [TestCase(new int[] { 2, 8, 9, 0, 3, 0 }, new int[] { 9, 8, 3, 2, 0, 0 })]
+        [TestCase(new int[] { 0, 0 }, new int[] { 0, 0 })]
+        [TestCase(new int[] { -9, -8, -7, -6, -5, -4, -3, -2, -1}, new int[] { -1, -2, -3, -4, -5, -6, -7, -8, -9})]
+        [TestCase(new int[] { 9, -2, -4, 67, 98, 56, 34, -34 }, new int[] { 98, 67, 56, 34, 9, -2, -4, -34 })]
         public void SortByDescending_WhenValidValues_SortAllElementsOfArrayFromBiggestToSmallest(int[] actualArray, int[] expectedArray)
         {
             Lists actual = new Lists(actualArray);
@@ -218,6 +242,9 @@ namespace MyFirstLibrary.Test
 
         [TestCase(3, new int[] { 3, 37, 7, 5, 3, 8 }, new int[] { 37, 7, 5, 3, 8 })]
         [TestCase(0, new int[] { 2, 8, 9, 0, 3, 0 }, new int[] { 2, 8, 9, 3, 0 })]
+        [TestCase(9, new int[] { 9, 9 }, new int[] { 9 })]
+        [TestCase(-10, new int[] { 98, 98, 10, -10, -10 }, new int[] { 98, 98, 10, -10})]
+        [TestCase(8, new int[] { 67, 56, 45, 34, 23, 12, 8 }, new int[] { 67, 56, 45, 34, 23, 12 })]
         public void RemoveByFirstValue_WhenValidValues_RemoveElementByFirstValue(int value, int[] actualArray, int[] expectedArray)
         {
             Lists actual = new Lists(actualArray);
@@ -230,6 +257,9 @@ namespace MyFirstLibrary.Test
 
         [TestCase(3, new int[] { 3, 37, 7, 5, 3, 8 }, new int[] { 37, 7, 5, 8 })]
         [TestCase(0, new int[] { 2, 8, 9, 0, 3, 0 }, new int[] { 2, 8, 9, 3 })]
+        [TestCase(12, new int[] { 12, 12, 12, 12 }, new int[] { })]
+        [TestCase(-1, new int[] { 0, 0, 0, -1, 0, -1, 0 }, new int[] { 0, 0, 0, 0, 0 })]
+        [TestCase(1, new int[] { 1, 2, 3, 2, 1, 3, 2, 4, 3 }, new int[] { 2, 3, 2, 3, 2, 4, 3})]
         public void RemoveByAllValues_WhenValidValues_RemoveElementByAllValue(int value, int[] actualArray, int[] expectedArray)
         {
             Lists actual = new Lists(actualArray);
@@ -242,6 +272,7 @@ namespace MyFirstLibrary.Test
 
         [TestCase(new int[] { }, new int[] { 45 }, new int[] { 45 })]
         [TestCase(new int[] { }, new int[] { 2, 8, 9, 3 }, new int[] { 2, 8, 9, 3 })]
+        [TestCase(new int[] { 23, 34, 56 }, new int[] { 0, 0, 0 }, new int[] { 23, 34, 56, 0, 0, 0 })]
         public void AddList_WhenValidValues_ShouldReturnList(int[] arrayList, int[] arrayAddedList, int[] expectedArray)
         {
             Lists actual = new Lists(arrayList);
